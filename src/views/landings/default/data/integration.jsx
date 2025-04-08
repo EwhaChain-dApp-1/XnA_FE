@@ -3,30 +3,30 @@ import SvgIcon from '@/components/SvgIcon';
 import { DOCS_URL } from '@/path';
 
 export const integration = {
-  headLine: 'Tailored for Every Industry',
-  captionLine: 'From Project Management to AI, see how our UI Kit helps you build SaaS applications tailored for a variety of industries.',
+  headLine: 'Topics You Care About',
+  captionLine: 'Explore diverse questions across blockchain, development, and real-world XRP use cases — all in one place.',
   primaryBtn: {
-    children: 'Documentation',
+    children: 'See More',
     startIcon: <SvgIcon name="tabler-help" color="background.default" />,
     href: DOCS_URL,
     target: '_blank',
     rel: 'noopener noreferrer'
   },
   tagList: [
-    { label: 'Project Management' },
-    { label: 'Customer Relationship Management CRM' },
-    { label: 'HR & Recruitment' },
-    { label: 'Finance & Accounting' },
-    { label: 'E-commerce Solutions' },
-    { label: 'Marketing Automation' },
-    { label: 'Healthcare & Telemedicine' },
-    { label: 'LMS' },
-    { label: 'AI & ML Platforms' },
-    { label: 'Inventory & Supply Chain Management' },
-    { label: 'Customer Support & Help Desk' },
-    { label: 'Email Marketing and SEO Tools' },
-    { label: 'Networking Platforms' },
-    { label: 'Blogging Tools' },
-    { label: 'Data Analytics & Business Intelligence' }
+    { label: 'XRPL Basics' },
+    { label: 'Smart Contracts' },
+    { label: 'Token Economics' },
+    { label: 'Web3 Development' },
+    { label: 'Wallet Integration' },
+    { label: 'Blockchain Security' },
+    { label: 'NFTs on XRPL' },
+    { label: 'Decentralized Identity' },
+    { label: 'Payment Channels' },
+    { label: 'Consensus Algorithm' },
+    { label: 'XRP Toolkit' },
+    { label: 'Cross-chain Interoperability' },
+    { label: 'Dev Tools & SDKs' },
+    { label: 'Governance & Voting' },
+    { label: 'Real-World Use Cases' }
   ]
 };

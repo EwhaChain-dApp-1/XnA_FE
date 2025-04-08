@@ -1,10 +1,10 @@
 export const benefit = {
-  heading: 'Endless Possibilities',
-  caption: 'Everything you need to design both the marketing site and the admin interface for your SaaS product.',
+  heading: 'Ask, Answer, and Earn',
+  caption: 'Build knowledge, help others, and get rewarded with XRP — all on a decentralized QnA platform.',
   blockDetail: [
-    { animationDelay: 0.1, counter: 200, defaultUnit: '+', caption: 'Blocks' },
-    { animationDelay: 0.2, counter: 50, defaultUnit: '+', caption: 'Admin Pages' },
-    { animationDelay: 0.3, counter: 7, defaultUnit: '+', caption: 'Landing Demos' },
-    { animationDelay: 0.4, counter: 1200, defaultUnit: '+', caption: 'Hours Saved' }
+    { animationDelay: 0.1, counter: 500, defaultUnit: '+', caption: 'Questions Asked' },
+    { animationDelay: 0.2, counter: 1000, defaultUnit: '+', caption: 'Answers Given' },
+    { animationDelay: 0.3, counter: 300, defaultUnit: '+', caption: 'XRP Earned' },
+    { animationDelay: 0.4, counter: 100, defaultUnit: '+', caption: 'Active Contributors' }
   ]
 };

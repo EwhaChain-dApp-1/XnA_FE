@@ -4,6 +4,7 @@ import { IconType } from '@/enum';
 import { SECTION_PATH, BUY_NOW_URL, ADMIN_PATH, DOCS_URL } from '@/path';
 
 const linkProps = { target: '_blank', rel: 'noopener noreferrer' };
+const imagePrefix = '/assets/images/qna';
 
 export const feature2 = {
   heading: 'Culture of Innovation',
@@ -161,40 +162,40 @@ export const feature10 = {
 };
 
 export const feature20 = {
-  heading: 'Comprehensive UI Kit Tailored to your Need',
-  caption: 'Ready to transform your SaaS designs with one powerful UI Kit?',
-  actionBtn: { children: 'Buy Now', href: BUY_NOW_URL, ...linkProps },
-  secondaryBtn: { children: 'Explore Blocks', href: SECTION_PATH },
+  heading: 'A Decentralized QnA Platform Powered by XRPL',
+  caption: 'Ask questions, share knowledge, and earn XRP rewards in a fair and transparent way.',
+  actionBtn: { children: 'Post a Question', href: '/ask' },
+  secondaryBtn: { children: 'Explore Questions', href: '/questions' },
   features: [
     {
-      icon: 'tabler-accessible',
-      title: 'WCAG Compliant',
-      content: 'Ensure accessibility with WCAG compliant design for browsing.'
+      icon: 'tabler-coin',
+      title: 'Earn XRP Rewards',
+      content: 'Helpful answers are rewarded with XRP tokens directly via the XRP Ledger.'
     },
     {
-      icon: 'tabler-brand-google',
-      title: 'SEO Friendly',
-      content: 'Boost visibility with SEO-friendly features for better search rankings.'
+      icon: 'tabler-shield-lock',
+      title: 'Decentralized & Secure',
+      content: 'Built on XRPL for transparency, data integrity, and censorship resistance.'
     },
     {
-      icon: 'tabler-stack-2',
-      title: 'MUI Components',
-      content: 'Customize Material 3 design MUI components for enhanced aesthetics.'
+      icon: 'tabler-wallet',
+      title: 'Wallet Integration',
+      content: 'Easily connect your XRPL-compatible wallet to manage earnings and interactions.'
     },
     {
-      icon: 'tabler-rocket',
-      title: 'High Performance UI',
-      content: 'Adjust content layout for visual coherence on various screen sizes.'
+      icon: 'tabler-sparkles',
+      title: 'Token-Based Incentives',
+      content: 'Question askers can set token bounties to encourage high-quality answers.'
     },
     {
-      icon: 'tabler-help',
-      title: 'Detailed Documentation',
-      content: 'Access comprehensive documentation for easy guidance on platform usage.'
+      icon: 'tabler-users-group',
+      title: 'Community Moderation',
+      content: 'Leverage the power of the community to upvote, downvote, and select the best answers.'
     },
     {
       icon: 'tabler-refresh',
-      title: 'Regular Updates',
-      content: 'Receive consistent updates to keep the platform secure and up-to-date with the latest features.'
+      title: 'Transparent History',
+      content: 'All actions like posting, answering, and rewarding are immutably recorded on-chain.'
     }
   ]
 };
@@ -351,68 +352,68 @@ export const feature23 = {
 };
 
 export const feature18 = {
-  heading: 'Powerful Admin Interface',
-  caption: 'Manage data, users, and workflows effortlessly with intuitive, customizable admin controls and features.',
+  heading: 'How Our QnA Platform Works',
+  caption: 'From asking questions to earning XRP for helpful answers — here’s how it all works on our decentralized knowledge-sharing platform.',
   topics: [
     {
-      icon: 'tabler-sparkles',
-      title: 'Material UI Powered',
-      title2: 'Leverage Power of Material UI Components',
-      description: 'The power and flexibility of Material UI components in admin template',
-      image: '/assets/images/graphics/default/admin-dashboard.png',
+      icon: 'tabler-message-circle-question',
+      title: 'Post Your Question',
+      title2: 'Ask What You Want to Know',
+      description: 'Create a new question and provide context so others can understand and help effectively.',
+      image: `${imagePrefix}/ask-flow.svg`,
       list: [
-        { primary: 'Nextjs JavaScript/TypeScript' },
-        { primary: 'Customizable Themes' },
-        { primary: 'Rich Form and Table Components' },
-        { primary: 'Responsive Grid System' }
+        { primary: 'Write your question with clear details' },
+        { primary: 'Tag with relevant topics' },
+        { primary: 'Submit to the community' },
+        { primary: 'Monitor responses in real time' }
       ],
-      actionBtn: { children: 'View Dashboard', href: ADMIN_PATH, ...linkProps },
-      actionBtn2: { children: 'Docs', href: DOCS_URL, ...linkProps }
+      actionBtn: { children: 'Ask a Question', href: '/ask' },
+      actionBtn2: { children: 'View Questions', href: '/questions' }
     },
     {
-      icon: 'tabler-palette',
-      title: 'Customizable Themes',
-      title2: 'Flexible Theming Options',
-      description: 'Tailor themes effortlessly with MUI v6 robust theming system.',
-      image: '/assets/images/graphics/default/admin-dashboard-2.png',
+      icon: 'tabler-coin',
+      title: 'Set a Token Reward',
+      title2: 'Incentivize Great Answers',
+      description: 'Motivate the community by offering XRP rewards to the best answers.',
+      image: '/assets/images/qna/reward-flow.png',
       list: [
-        { primary: 'Easy options for Theming' },
-        { primary: 'Layout Options' },
-        { primary: 'Color Presets tailored to your Web Apps' },
-        { primary: 'Consistency in Design' }
+        { primary: 'Choose an amount of XRP as a reward' },
+        { primary: 'Securely locked in escrow via XRPL' },
+        { primary: 'Visible to all answerers' },
+        { primary: 'Fully transparent & trustless' }
       ],
-      actionBtn: { children: 'View Dashboard', href: ADMIN_PATH, ...linkProps },
-      actionBtn2: { children: 'Docs', href: DOCS_URL, ...linkProps }
+      actionBtn: { children: 'Learn About Rewards', href: '/about/rewards' },
+      actionBtn2: { children: 'View Token Usage', href: '/wallet' }
     },
     {
-      icon: 'tabler-rocket',
-      title: 'Faster Development',
-      title2: 'Rapid Development',
-      description: 'Launch projects quicker with pre-built layouts and components.',
-      image: '/assets/images/graphics/default/admin-dashboard-3.png',
+      icon: 'tabler-edit',
+      title: 'Get Answers',
+      title2: 'Engage with the Community',
+      description: 'Receive thoughtful responses from knowledgeable users who want to earn your reward.',
+      image: '/assets/images/qna/answer-flow.png',
       list: [
-        { primary: 'Time Saving' },
-        { primary: 'Tested and Reliable' },
-        { primary: 'Customization Ready' },
-        { primary: 'Enhanced User Experience' }
+        { primary: 'Community members write answers' },
+        { primary: 'Upvote helpful content' },
+        { primary: 'Discuss and refine solutions' },
+        { primary: 'Build a reputation as a helper' }
       ],
-      actionBtn: { children: 'View Dashboard', href: ADMIN_PATH, ...linkProps },
-      actionBtn2: { children: 'Docs', href: DOCS_URL, ...linkProps }
+      actionBtn: { children: 'Answer Questions', href: '/questions' },
+      actionBtn2: { children: 'View Leaderboard', href: '/leaderboard' }
     },
     {
-      icon: 'tabler-scale',
-      title: 'Scalability',
-      title2: 'Build to Scale',
-      description: 'Easily scale your app with flexible, modular, and extensible templates.',
-      image: '/assets/images/graphics/default/admin-dashboard.png',
+      icon: 'tabler-check',
+      title: 'Accept an Answer & Distribute XRP',
+      title2: 'Complete the Knowledge Cycle',
+      description: 'Select the most helpful answer to automatically release XRP from escrow to the answerer.',
+      image: '/assets/images/qna/earn-flow.png',
       list: [
-        { primary: 'Modular Architecture' },
-        { primary: 'Performance Optimized' },
-        { primary: 'Extensible Codebase' },
-        { primary: 'Future Proof Design' }
+        { primary: 'Select the best answer' },
+        { primary: 'XRP is transferred to answerer' },
+        { primary: 'Transaction is recorded on-chain' },
+        { primary: 'Build a transparent contribution history' }
       ],
-      actionBtn: { children: 'View Dashboard', href: ADMIN_PATH, ...linkProps },
-      actionBtn2: { children: 'Docs', href: DOCS_URL, ...linkProps }
+      actionBtn: { children: 'View Your Activity', href: '/profile' },
+      actionBtn2: { children: 'Track Rewards', href: '/wallet' }
     }
   ]
 };
