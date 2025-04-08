@@ -1,5 +1,5 @@
 {
-  "brandName": "SaasAble",
+  "brandName": "XnA",
   "title": "React Multipurpose UI Kit and Dashboard Template",
   "company": {
     "name": "Phoenixcoded",
@@ -16,7 +16,7 @@
     }
   },
   "logo": {
-    "main": "",
+    "main": "/logo/XnA.svg",
     "logoIcon": "",
     "logoFab": "",
     "logoWatermark": ""
