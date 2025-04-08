@@ -1,43 +1,44 @@
-# node_modules (의존성 폴더)
+# node_modules (의존성 라이브러리)
 node_modules/
 
-# 빌드 결과물
-build/
-dist/
-
-# 환경 설정 파일
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Next.js 빌드 디렉토리
+.next/
+out/
 
 # 로그 파일
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# 시스템 파일
-.DS_Store
-Thumbs.db
+# 환경 변수 파일
+.env*
+!.env.example
 
-# IDE/에디터 설정
+# macOS 시스템 파일
+.DS_Store
+
+# 에디터 설정 (VSCode 등)
 .vscode/
 .idea/
-*.swp
 
-# 테스트 커버리지
+# 운영체제 또는 에디터에서 생성되는 임시 파일
+*.swp
+*.swo
+*.log
+
+# 빌드 산출물 (TypeScript 사용 시)
+dist/
+*.tsbuildinfo
+
+# 테스트 커버리지 결과 (Jest 등 사용 시)
 coverage/
 
-# eslint cache
+# local 개발용 데이터베이스 파일 (사용한다면)
+*.sqlite
+*.db
+
+# next export 시 정적 파일 빌드 결과
+export/
+
+# lint 캐시
 .eslintcache
-
-# parcel, vite 등 임시 캐시
-.cache/
-*.parcel-cache/
-
-# local 개발 중 생성된 파일
-*.local
-
-# 기타
-*.log
