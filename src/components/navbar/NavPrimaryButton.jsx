@@ -18,7 +18,7 @@ export default function NavPrimaryButton({ sx, children, ...rest }) {
       rel="noopener noreferrer"
       aria-label="nav-primary-btn"
     >
-      {children || 'Primary Button'}
+      {children || 'Wallet'}
     </Button>
   );
 }

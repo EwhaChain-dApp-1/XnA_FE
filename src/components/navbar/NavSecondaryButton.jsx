@@ -18,7 +18,7 @@ export default function NavSecondaryButton({ sx, children, ...rest }) {
       rel="noopener noreferrer"
       aria-label="nav-secondary-btn"
     >
-      {children || 'Secondary Button'}
+      {children || 'My Page'}
     </Button>
   );
 }

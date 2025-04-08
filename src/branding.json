@@ -17,8 +17,8 @@
   },
   "logo": {
     "main": "/logo/XnA.svg",
-    "logoIcon": "",
-    "logoFab": "",
-    "logoWatermark": ""
+    "logoIcon": "/logo/XnA.svg",
+    "logoFab": "/logo/XnA.svg",
+    "logoWatermark": "/logo/XnA.svg"
   }
 }

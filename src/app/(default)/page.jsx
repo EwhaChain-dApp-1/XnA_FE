@@ -12,6 +12,7 @@ export default function HomePage() {
   return (
     <ThemeAI>
       <>
+      
         <Main />
 
         {/* scroll to top section */}
