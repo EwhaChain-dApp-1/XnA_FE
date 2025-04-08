@@ -1,5 +1,0 @@
-{
-  "/ask/page": "app/ask/page.js",
-  "/(default)/page": "app/(default)/page.js",
-  "/sections/page": "app/sections/page.js"
-}
