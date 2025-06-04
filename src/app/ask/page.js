@@ -5,6 +5,7 @@ import { TextField, Button, Container, Typography, Box } from '@mui/material';
 import { Navbar10 } from '@/blocks/navbar';
 import { NavbarContent10 } from '@/blocks/navbar/navbar-content';
 import { Footer7 } from '@/blocks/footer';
+import { useRouter } from 'next/navigation';
 
 export default function AskPage() {
   const [title, setTitle] = useState('');
@@ -13,10 +14,47 @@ export default function AskPage() {
 
   const [hashtags, setHashtags] = useState([]);
   const [hashtagInput, setHashtagInput] = useState('');
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('Submit Question:', { title, body, reward });
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submit Question:', { title, body, reward });
+  
+    const userId = localStorage.getItem('user_id');
+    if (!userId) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+  
+    const questionPayload = {
+      user_id: parseInt(userId),
+      title,
+      body,
+      reward_xrp: parseFloat(reward),
+      tags: hashtags,
+    };
+  
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/questions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(questionPayload),
+      });
+  
+      const data = await response.json();
+      console.log('✅ 질문 등록 성공:', data);
+      alert('질문이 등록되었습니다!');
+      router.push(`/question-detail/${data.id}`);
+    } catch (error) {
+      console.error('❌ 질문 등록 실패:', error);
+      alert('질문 등록 중 오류가 발생했습니다.');
+    }
   };
 
   const handleHashtagKeyDown = (e) => {

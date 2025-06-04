@@ -15,7 +15,7 @@ export const navbar = {
   //   sx: { minWidth: 40, width: 40, height: 40, p: 0 }
   // },
   secondaryBtn: { children: 'My Page' },
-  primaryBtn: { children: 'Connect Wallet'},
+  primaryBtn: { children: 'Connect Wallet', href: '/connect-wallet'},
   // navItems: [
   //   { id: 'home', title: 'Home', link: '/' },
   //   landingMegamenu,
