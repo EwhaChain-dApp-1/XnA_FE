@@ -12,6 +12,7 @@ export default function QuestionDetailPage() {
   const { id } = useParams();
   const [question, setQuestion] = useState(null);
   const [recentQuestions, setRecentQuestions] = useState([]);
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -26,7 +27,14 @@ export default function QuestionDetailPage() {
       setRecentQuestions(data.filter((q) => q.id !== Number(id)));
     };
 
+    const fetchAnswers = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/questions/${id}/answers`);
+        const data = await res.json();
+        setAnswers(Array.isArray(data) ? data : []);
+    };
+    
     fetchQuestion();
+    fetchAnswers();
     fetchRecent();
   }, [id]);
 
@@ -37,6 +45,37 @@ export default function QuestionDetailPage() {
       </Container>
     );
   }
+
+  const handleAcceptAnswer = async (responderId) => {
+    const questionId = Number(id);
+    const responderAddress = answers.find(a => a.user_id === responderId)?.wallet_address;
+  
+    if (!responderAddress) {
+      alert('답변자의 지갑 주소를 찾을 수 없습니다.');
+      return;
+    }
+  
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/finish_escrow`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          question_id: questionId,
+          responder_address: responderAddress
+        })
+      });
+  
+      const result = await res.json();
+      if (res.ok) {
+        alert('채택 및 보상 전송 완료!');
+      } else {
+        alert(`오류: ${result.detail}`);
+      }
+    } catch (err) {
+      console.error('채택 실패:', err);
+      alert('채택 요청 중 오류 발생');
+    }
+  };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -98,6 +137,45 @@ export default function QuestionDetailPage() {
                 <Chip key={idx} label={`#${tag}`} variant="outlined" />
               ))}
             </Stack>
+            <Box sx={{ mt: 6 }}>
+                <Typography variant="h6" gutterBottom>
+                Answers ({answers.length})
+                </Typography>
+
+                {answers.length === 0 ? (
+                <Typography variant="body2" color="text.secondary">
+                    아직 등록된 답변이 없습니다.
+                </Typography>
+                ) : (
+                <Stack spacing={4} mt={2}>
+                    {answers.map((answer) => (
+                    <Box key={answer.id} sx={{ p: 3, border: '1px solid #ccc', borderRadius: 2 }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                            <Typography variant="body2" color="text.secondary">
+                                Wallet: {answer.wallet_address || 'Anonymous'}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {new Date(answer.created_at).toLocaleDateString()}
+                            </Typography>
+                            </Box>
+                            <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap', lineHeight: 1.8 }}>
+                                {answer.body}
+                            </Typography>
+                        {/* 채택 버튼 추가 */}
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+                            <Button
+                                variant="outlined"
+                                size="small"
+                                onClick={() => handleAcceptAnswer(answer.user_id)}
+                            >
+                                채택
+                            </Button>
+                        </Box>
+                    </Box>
+                    ))}
+                </Stack>
+                )}
+            </Box>
           </Box>
 
           {/* 사이드 정보 (보상, 버튼, 추천 질문 등) */}
@@ -123,7 +201,7 @@ export default function QuestionDetailPage() {
                 color="primary"
                 sx={{ mt: 2, width: '100%' }}
               >
-                <Link href="/answer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link href={`/question-detail/${id}/answer`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   Answer
                 </Link>
               </Button>

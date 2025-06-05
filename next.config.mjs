@@ -9,7 +9,7 @@ const cspHeader = `
     base-uri 'self';
     form-action 'self';
     media-src 'self' https://*.cloudfront.net;
-    connect-src 'self' http://127.0.0.1:8000 http://localhost:8000 https://oauth2.xumm.app https://xumm.app https://www.googletagmanager.com https://raw.githubusercontent.com ;
+    connect-src 'self' wss://xumm.app http://127.0.0.1:8000 http://localhost:8000 https://oauth2.xumm.app https://xumm.app https://www.googletagmanager.com https://raw.githubusercontent.com ;
 `;
 
 const nextConfig = {

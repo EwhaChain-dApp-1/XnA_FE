@@ -22,6 +22,8 @@ export default function QuestionList() {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/questions`);
         const data = await res.json();
+        console.log("📦 questions API 응답:", data); // 여기 출력 필수
+        
         setQuestions(data);
       } catch (err) {
         console.error('질문 목록 불러오기 실패:', err);

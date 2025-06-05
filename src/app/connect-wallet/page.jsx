@@ -28,7 +28,7 @@ export default function ConnectWalletPage() {
 
          // ✅ 여기에 추가!
         try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/login`, {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/login`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -36,9 +36,10 @@ export default function ConnectWalletPage() {
             body: JSON.stringify({ wallet_address: account })
           })
 
-          const user = await response.json()
-          localStorage.setItem('user_id', user.user_id)
-          console.log('✅ 사용자 정보 저장됨:', user)
+          const user = await response.json();
+          localStorage.setItem('user_id', user.user_id);
+          localStorage.setItem('wallet_address', user.wallet_address);
+          console.log('✅ 사용자 정보 저장됨:', user);
         } catch (err) {
           console.error('❌ 사용자 저장 실패:', err)
         }
