@@ -165,7 +165,7 @@ export const feature20 = {
   heading: 'A Decentralized QnA Platform Powered by XRPL',
   caption: 'Ask questions, share knowledge, and earn XRP rewards in a fair and transparent way.',
   actionBtn: { children: 'Post a Question', href: '/ask' },
-  secondaryBtn: { children: 'Explore Questions', href: '/questions' },
+  secondaryBtn: { children: 'Explore Questions', href: '/question-list' },
   features: [
     {
       icon: 'tabler-coin',

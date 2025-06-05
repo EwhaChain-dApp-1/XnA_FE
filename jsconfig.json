@@ -25,6 +25,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.js", "**/*.js", "**/*.jsx", ".next/types/**/*.js"],
+  "include": ["next-env.d.js", "**/*.js", "**/*.jsx", ".next/types/**/*.js", "src/app/connect-wallet/page.tsx"],
   "exclude": ["node_modules"]
 }
