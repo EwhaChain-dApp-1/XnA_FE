@@ -13,6 +13,7 @@ export default function QuestionDetailPage() {
   const [question, setQuestion] = useState(null);
   const [recentQuestions, setRecentQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState(null);
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -32,6 +33,11 @@ export default function QuestionDetailPage() {
         const data = await res.json();
         setAnswers(Array.isArray(data) ? data : []);
     };
+
+    if (typeof window !== 'undefined') {
+      const userId = localStorage.getItem('user_id');
+      setCurrentUserId(Number(userId));
+    }
     
     fetchQuestion();
     fetchAnswers();
@@ -46,9 +52,20 @@ export default function QuestionDetailPage() {
     );
   }
 
+  console.log('질문 작성자 ID:', question?.user_id, '현재 사용자 ID:', currentUserId);
+  console.log('질문 상태:', question?.is_reward_sent);
+
   const handleAcceptAnswer = async (responderId) => {
     const questionId = Number(id);
     const responderAddress = answers.find(a => a.user_id === responderId)?.wallet_address;
+
+    const answer = answers.find(a => a.user_id === responderId);
+    if (!answer) {
+      alert('해당 답변을 찾을 수 없습니다.');
+      return;
+    }
+
+    const answerId = answer.id;
   
     if (!responderAddress) {
       alert('답변자의 지갑 주소를 찾을 수 없습니다.');
@@ -56,20 +73,22 @@ export default function QuestionDetailPage() {
     }
   
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/finish_escrow`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/answers/finish_escrow`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           question_id: questionId,
-          responder_address: responderAddress
+          responder_address: responderAddress,
+          answer_id: answerId,
         })
       });
   
       const result = await res.json();
       if (res.ok) {
         alert('채택 및 보상 전송 완료!');
+        location.reload();
       } else {
-        alert(`오류: ${result.detail}`);
+        alert(`오류: ${JSON.stringify(result)}`);
       }
     } catch (err) {
       console.error('채택 실패:', err);
@@ -161,16 +180,30 @@ export default function QuestionDetailPage() {
                             <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap', lineHeight: 1.8 }}>
                                 {answer.body}
                             </Typography>
-                        {/* 채택 버튼 추가 */}
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-                            <Button
-                                variant="outlined"
-                                size="small"
-                                onClick={() => handleAcceptAnswer(answer.user_id)}
-                            >
-                                채택
-                            </Button>
-                        </Box>
+                            {currentUserId !== null &&
+                              question.user_id === currentUserId && (
+                                <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+                                  {answer.is_accepted ? (
+                                    <Typography
+                                      variant="body1"
+                                      color="primary"
+                                      sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center' }}
+                                    >
+                                      ✅ 채택된 답변
+                                    </Typography>
+                                  ) : (
+                                    !question.is_reward_sent && (
+                                      <Button
+                                        variant="outlined"
+                                        size="small"
+                                        onClick={() => handleAcceptAnswer(answer.user_id)}
+                                      >
+                                        채택
+                                      </Button>
+                                    )
+                                  )}
+                                </Box>
+                              )}
                     </Box>
                     ))}
                 </Stack>
@@ -196,15 +229,13 @@ export default function QuestionDetailPage() {
               <Typography variant="h6" color="primary" sx={{ mt: 0.5 }}>
                 {question.reward_xrp} XRP
               </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{ mt: 2, width: '100%' }}
-              >
-                <Link href={`/question-detail/${id}/answer`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  Answer
+              {currentUserId !== null && question.user_id !== currentUserId && (
+                <Link href={`/question-detail/${id}/answer`} passHref legacyBehavior>
+                  <Button variant="contained" color="primary" sx={{ mt: 2, width: '100%' }} component="a">
+                    Answer
+                  </Button>
                 </Link>
-              </Button>
+              )}
             </Box>
 
             <Divider sx={{ width: '50%' }} />

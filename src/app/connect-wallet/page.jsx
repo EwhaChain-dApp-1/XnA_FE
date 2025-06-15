@@ -67,6 +67,7 @@ export default function ConnectWalletPage() {
     if (!xummInstance) return
     xummInstance.logout()
     setAccount('')
+    localStorage.clear();
   }
 
   return (
